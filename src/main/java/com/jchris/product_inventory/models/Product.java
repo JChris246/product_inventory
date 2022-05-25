@@ -6,8 +6,11 @@ import javax.persistence.Id;
 @Entity
 public class Product {
 
+    /**id of the product */
     @Id private int id;
+    /**image url of the product */
     private String image;
+    /**name of the product */
     private String name;
 
     public Product() {
