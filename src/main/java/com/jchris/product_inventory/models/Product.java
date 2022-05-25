@@ -1,12 +1,15 @@
 package com.jchris.product_inventory.models;
 
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
 @Entity
 public class Product {
 
     /**id of the product */
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id private int id;
     /**image url of the product */
     private String image;
@@ -14,7 +17,7 @@ public class Product {
     private String name;
 
     public Product() {
-        this(-1, "", "");
+
     }
 
     public Product(int id, String image, String name) {
