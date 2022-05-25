@@ -35,10 +35,6 @@
             "error",
             "double"
         ],
-        "semi": [
-            "error",
-            "always"
-        ],
         "react/prop-types": "off",
         "no-empty": "error",
         "no-unreachable-loop": "error",
