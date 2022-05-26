@@ -2,7 +2,6 @@ import { useState } from "react";
 
 import Modal from "./Modal";
 import Plus from "../assets/icons/Plus";
-// https://picsum.photos/200/300
 
 const TextInput = ({ label, value, update, name, placeholder, full }) => {
     return (
@@ -51,7 +50,7 @@ const AddNewProductDialog = ({ onClose }) => {
         if (result.ok) {
             alert("Added product!");
             setProduct({ name: "", image: "" });
-            onClose();
+            onClose(product);
         } else
             alert("An error occurred adding product!")
     }
@@ -66,11 +65,6 @@ const AddNewProductDialog = ({ onClose }) => {
                     <TextInput label="image" value={product.image} name="image" placeholder="product image"
                         update={updateForm}/>
                     <section className="flex justify-end space-x-2 mt-4">
-                        <button onClick={addProduct} className="hover:bg-green-600 bg-green-500 text-gray-200
-                            rounded-md py-2 px-4 flex items-center">
-                            <Plus/>
-                            <span className="ml-2">Add</span>
-                        </button>
                         <button onClick={cancel} className="hover:bg-red-700 bg-red-600 text-gray-200
                             rounded-md py-2 px-4 flex items-center">
                             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"
@@ -82,6 +76,11 @@ const AddNewProductDialog = ({ onClose }) => {
                                     256V256z"/>
                             </svg>
                             <span className="ml-2">Cancel</span>
+                        </button>
+                        <button onClick={addProduct} className="hover:bg-green-600 bg-green-500 text-gray-200
+                            rounded-md py-2 px-4 flex items-center">
+                            <Plus/>
+                            <span className="ml-2">Add</span>
                         </button>
                     </section>
                 </form>
