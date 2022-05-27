@@ -38,7 +38,7 @@ public class StockController {
         stockService.deleteStock(productId, expirationDate);
     }
 
-    @RequestMapping(method=RequestMethod.PUT, value="/api/stock/{productId}/{expirationDate}")
+    @RequestMapping(method=RequestMethod.PUT, value="/api/stock")
     public void updateStock(@RequestBody StockData stock) {
         stockService.updateStock(stock.productId, stock.expirationDate, stock.count);
     }

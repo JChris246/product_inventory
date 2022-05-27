@@ -4,8 +4,8 @@ const Sidebar = () => {
     return (
         <aside className="w-full md:w-2/5 lg:w-1/5 h-fit md:h-full bg-zinc-900 p-0 fixed bottom-0 z-[5] md:static">
             <nav className="w-full flex flex-row md:flex-col">
-                <Link to="/products" className="w-fit md:w-full py-6 px-8 md:py-4 md:px-2 text-gray-200 bg-zinc-800
-                    hover:bg-zinc-700 hover:cursor-pointer flex items-center" title="Products">
+                <Link to="/products" className="w-fit md:w-full py-6 px-8 md:py-4 md:px-2 text-gray-200 bg-gray-800
+                    hover:bg-gray-700 hover:cursor-pointer flex items-center" title="Products">
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" className="w-8 h-8 md:w-5 md:h-5
                         fill-gray-100">
                         <path d="M494.6 255.9c-65.63-.8203-118.6-54.14-118.6-119.9c-65.74
@@ -21,8 +21,8 @@ const Sidebar = () => {
                     </svg>
                     <span className="hidden md:block ml-2">Products</span>
                 </Link>
-                <Link to="/stock" className="w-fit md:w-full py-6 px-8 md:py-4 md:px-2 text-gray-200 bg-zinc-800
-                    hover:bg-zinc-700 hover:cursor-pointer flex items-center" title="Stock">
+                <Link to="/stock" className="w-fit md:w-full py-6 px-8 md:py-4 md:px-2 text-gray-200 bg-gray-800
+                    hover:bg-gray-700 hover:cursor-pointer flex items-center" title="Stock">
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512" className="w-8 h-8 md:w-5 md:h-5
                         fill-gray-100">
                         <path d="M160 48C160 21.49 181.5 0 208 0H256V80C256 88.84 263.2 96 272 96H304C312.8 96 320
