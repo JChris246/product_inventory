@@ -1,7 +1,6 @@
 package com.jchris.product_inventory.controllers;
 
 import java.util.List;
-import java.util.Optional;
 
 import com.jchris.product_inventory.models.Stock;
 import com.jchris.product_inventory.services.StockService;
@@ -24,7 +23,7 @@ public class StockController {
     }
 
     @RequestMapping("/api/stock/{productId}/{expirationDate}")
-    public Optional<Stock> getStock(@PathVariable int productId, @PathVariable String expirationDate) {
+    public Stock getStock(@PathVariable int productId, @PathVariable String expirationDate) {
         return stockService.getStockById(productId, expirationDate);
     }
 

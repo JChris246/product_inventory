@@ -14,6 +14,7 @@ import org.springframework.stereotype.Service;
 public class ProductService {
 
     @Autowired private ProductRepository productRepository;
+    @Autowired private LRUCache<Integer, Product> productCache;
 
     public List<Product> getProducts() {
         List<Product> products = new ArrayList<>();
@@ -21,19 +22,32 @@ public class ProductService {
         return products;
     }
 
-    public Optional<Product> getProductById(int productId) {
-        return productRepository.findById(productId);
+    public Product getProductById(int productId) {
+        Product product = productCache.get(productId);
+        if (product == null) {
+            Optional<Product> p = productRepository.findById(productId);
+            if (!p.isEmpty()) {
+                product = p.get();
+                productCache.add(product.getId(), product);
+                return product;
+            } else return null;
+        }
+
+        return product;
     }
 
     public void addProduct(Product product) {
+        productCache.add(product.getId(), product);
         productRepository.save(product);
     }
 
     public void deleteProduct(int productId) {
+        productCache.evict(productId);
         productRepository.deleteById(productId);
     }
 
     public void updateProduct(Product product) {
+        productCache.add(product.getId(), product);
         productRepository.save(product);
     }
 }

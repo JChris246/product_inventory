@@ -1,7 +1,6 @@
 package com.jchris.product_inventory.controllers;
 
 import java.util.List;
-import java.util.Optional;
 
 import com.jchris.product_inventory.models.Product;
 import com.jchris.product_inventory.services.ProductService;
@@ -24,7 +23,7 @@ public class ProductController {
     }
 
     @RequestMapping("/api/product/{productId}")
-    public Optional<Product> getProduct(@PathVariable int productId) {
+    public Product getProduct(@PathVariable int productId) {
         return productService.getProductById(productId);
     }
 
