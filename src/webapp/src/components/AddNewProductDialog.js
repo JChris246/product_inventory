@@ -4,8 +4,11 @@ import Modal from "./Modal";
 import Plus from "../assets/icons/Plus";
 import TextInput from "./TextInput";
 
+import { NotificationType, useNotificationContext } from "./Notification";
+
 const AddNewProductDialog = ({ onClose }) => {
     const [product, setProduct] = useState({ name: "", image: "" });
+    const { display: displayNotification } = useNotificationContext();
 
     const updateForm = (e) => {
         const { value, name } = e.target;
@@ -21,12 +24,12 @@ const AddNewProductDialog = ({ onClose }) => {
         e.preventDefault();
 
         if (product.name.length < 1) {
-            alert("Empty product name");
+            displayNotification({ message: "Empty product name", type: NotificationType.Error });
             return;
         }
 
         if (product.image.length < 1) {
-            alert("Empty product image");
+            displayNotification({ message: "Empty product image", type: NotificationType.Error });
             return;
         }
 
@@ -37,11 +40,11 @@ const AddNewProductDialog = ({ onClose }) => {
         });
 
         if (result.ok) {
-            alert("Added product!");
+            displayNotification({ message: "Added product!", type: NotificationType.Success });
             setProduct({ name: "", image: "" });
             onClose(product);
         } else
-            alert("An error occurred adding product!")
+            displayNotification({ message: "An error occurred adding product!", type: NotificationType.Error });
     }
 
     return (

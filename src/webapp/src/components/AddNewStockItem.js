@@ -4,6 +4,8 @@ import Modal from "./Modal";
 import Plus from "../assets/icons/Plus";
 import TextInput from "./TextInput";
 
+import { NotificationType, useNotificationContext } from "./Notification";
+
 const NumberInput = ({ label, value, update, name, min, max }) => {
     return (
         <div className="flex items-center justify-between my-2">
@@ -17,6 +19,7 @@ const NumberInput = ({ label, value, update, name, min, max }) => {
 
 const AddNewStockItemDialog = ({ onClose, products, product }) => {
     const [stockItem, setStockItem] = useState({ productId: product, expirationDate: "", count: 1 });
+    const { display: displayNotification } = useNotificationContext();
 
     const updateForm = (e) => {
         const { value, name } = e.target;
@@ -44,19 +47,19 @@ const AddNewStockItemDialog = ({ onClose, products, product }) => {
         e.preventDefault();
 
         if (!stockItem.productId && stockItem.productId !== 0) {
-            alert("Please select a product");
+            displayNotification({ message: "Please select a product", type: NotificationType.Error });
             return;
         }
 
         const date = validateExpirationString(stockItem.expirationDate);
         if (!date.valid) {
-            alert("Invalid expiration date");
+            displayNotification({ message: "Invalid expiration datePlease select a product", type: NotificationType.Error });
             return;
         }
 
         if (stockItem.count < 1) {
-            alert("Is the amount really less than 0")
-            return
+            displayNotification({ message: "Is the amount really less than 1", type: NotificationType.Error });
+            return;
         }
 
         const result = await fetch("/api/stock", {
@@ -66,11 +69,11 @@ const AddNewStockItemDialog = ({ onClose, products, product }) => {
         });
 
         if (result.ok) {
-            alert("Added Item to stock!");
+            displayNotification({ message: "Added Item to stock!", type: NotificationType.Success });
             setStockItem({ productId: product, expirationDate: "", count: 1 });
             onClose();
         } else
-            alert("An error occurred adding product!")
+            displayNotification({ message: "An error occurred adding product!", type: NotificationType.Success });
     }
 
     return (
