@@ -53,7 +53,7 @@ const AddNewStockItemDialog = ({ onClose, products, product }) => {
 
         const date = validateExpirationString(stockItem.expirationDate);
         if (!date.valid) {
-            displayNotification({ message: "Invalid expiration datePlease select a product", type: NotificationType.Error });
+            displayNotification({ message: "Invalid expiration date", type: NotificationType.Error });
             return;
         }
 
